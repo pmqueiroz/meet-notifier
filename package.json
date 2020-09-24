@@ -1,0 +1,14 @@
+{
+  "name": "meet-notifier",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/pmqueiroz/meet-notifier.git",
+  "author": "pmqueiroz <pedroqueiroz593@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev":"electron ."
+  },
+  "dependencies": {
+    "electron": "^10.1.2"
+  }
+}
