@@ -6,9 +6,10 @@
   "author": "pmqueiroz <pedroqueiroz593@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev":"electron ."
+    "dev": "electron ."
   },
   "dependencies": {
+    "clipboardy": "^2.3.0",
     "electron": "^10.1.2"
   }
 }
