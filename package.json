@@ -1,7 +1,7 @@
 {
   "name": "meet-notifier",
   "description": "A Google Meet notifier for meets schedules in calendar.google",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src/index.js",
   "repository": "https://github.com/pmqueiroz/meet-notifier.git",
   "author": "pmqueiroz <pedroqueiroz593@gmail.com>",
