@@ -1,3 +1,4 @@
+require('events').EventEmitter.defaultMaxListeners = 15;
 const { app, screen, Menu, Tray, Notification, BrowserWindow } = require('electron')
 const { writeSync: copy } = require('clipboardy')
 const { resolve } = require('path')
@@ -6,7 +7,7 @@ const { shurp, linky, imge } = require('./utils/functions')
 const isMac = process.platform === 'darwin'
 const meetIcon = resolve(__dirname, 'assets', 'tray-icon.png')
 let tray = null
-let hidden = true;
+let isHidden = false
 
 isMac ? app.dock.hide() : null
 
@@ -19,6 +20,7 @@ app.setAppUserModelId(process.execPath)
 app.on('ready', () => {
     createTray()
 })
+
 
 const notify = (title, body) => {
     let icon = imge('tray-icon', 4)
@@ -34,15 +36,11 @@ const onClose = (exitCode = 1) => {
     switch (exitCode) {
         case 0:
             win.hide()
-            hidden = true
-            console.log('hide')
             break;
         case 1:
             app.quit()
-            console.log('quit')
             break;
         default:
-            console.log('default')
             app.quit()
             break;
     }
@@ -94,6 +92,7 @@ const createTray = () => {
         },
         { type: 'separator' },
         { label: 'Sair', click: () => {app.quit()} },
+        { label: 'aaaaa', click: () => {console.log(hidden())} },
     ])
 
     tray.setToolTip('Meet Notifier')
@@ -106,6 +105,7 @@ const createTray = () => {
 }
 
 const openMeet = (code) => {
+    isHidden = false
     const { width, height } = screen.getPrimaryDisplay().workAreaSize
 	win = new BrowserWindow({
 		width: width * .7,
@@ -113,12 +113,17 @@ const openMeet = (code) => {
         icon: imge('tray-icon', 4),
     })
 
-    hidden = false
-
     win.on('close', function (event) {
-        !hidden ? event.preventDefault() : null
-        onClose(0)
+        if (!isHidden) {
+            event.preventDefault()
+        }
+        win.hide()
     });
+
+    win.on('hide', () => {
+        console.log('app is now hidden')
+        isHidden = true
+    })
     
     win.loadURL('https://meet.google.com/'+code)
 
