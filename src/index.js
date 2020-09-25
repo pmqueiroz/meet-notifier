@@ -1,4 +1,4 @@
-const { app, Menu, Tray, Notification } = require('electron')
+const { app, screen, Menu, Tray, Notification, BrowserWindow } = require('electron')
 const { writeSync: copy } = require('clipboardy')
 const { resolve } = require('path')
 const { shurp, linky, imge } = require('./utils/functions')
@@ -41,12 +41,16 @@ const createTray = () => {
             submenu: [
                 { 
                     label: 'Abrir Meet',
-                    click: async () => { await linky(shurp('rod-icuv-cxi')) }
+                    click () { openMeet('rod-icuv-cxi') }
+                },
+                { 
+                    label: 'Abrir no Navegador',
+                    click () { linky(shurp('rod-icuv-cxi')) }
                 },
                 { 
                     label: 'Copiar Link',
-                    click() { copy('rod-icuv-cxi') }
-                }
+                    click() { copy(shurp('rod-icuv-cxi')) }
+                },
             ]
         },
         //Item
@@ -56,11 +60,15 @@ const createTray = () => {
             submenu: [
                 { 
                     label: 'Abrir Meet',
-                    click: async () => { await linky(shurp('pzz-zdpr-qpt')) }
+                    click () { openMeet('pzz-zdpr-qpt') }
+                },
+                { 
+                    label: 'Abrir no Navegador',
+                    click () { linky(shurp('pzz-zdpr-qpt')) }
                 },
                 { 
                     label: 'Copiar Link',
-                    click() { copy('pzz-zdpr-qpt') }
+                    click() { copy(shurp('pzz-zdpr-qpt')) }
                 },
             ]
         },
@@ -73,6 +81,24 @@ const createTray = () => {
 
   
     tray.on('double-click', () => notify('Banco de Dados', 'Próxima reunião em 20 minutos'))
+}
+
+const openMeet = (code) => {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize
+	win = new BrowserWindow({
+		width: width * .7,
+		height:  height * .7,
+        icon: imge('tray-icon', 4),
+    })
+    
+
+	win.loadURL('https://meet.google.com/'+code)
+
+	win.on('closed', () => {
+		win = null
+    })
+    
+    Menu.setApplicationMenu(null)
 }
 
 function handleSquirrelEvent(application) {
