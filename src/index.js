@@ -1,9 +1,11 @@
-const { app, Menu, Tray, shell } = require('electron')
+const { app, Menu, Tray, Notification } = require('electron')
 const { writeSync: copy } = require('clipboardy')
 const { resolve } = require('path')
-const { shurp, linky } = require('./utils/functions')
+const { shurp, linky, imge } = require('./utils/functions')
 
 const isMac = process.platform === 'darwin'
+const meetIcon = resolve(__dirname, 'assets', 'tray-icon.png')
+let tray = null
 
 isMac ? app.dock.hide() : null
 
@@ -11,14 +13,28 @@ if (handleSquirrelEvent(app)) {
     return;
 }
 
+app.setAppUserModelId(process.execPath)
+
 app.on('ready', () => {
     createTray()
 })
 
+const notify = (title, body) => {
+    let icon = imge('tray-icon', 4)
+    new Notification({
+        title, 
+        body,
+        icon
+    }).show();
+}
+
 const createTray = () => {
-    const tray = new Tray(resolve(__dirname, 'assets', 'tray-icon.png'))
+    tray = new Tray(meetIcon)
 
     const contextMenu = Menu.buildFromTemplate([
+        { label: 'Meet Notifier' },
+        { type: 'separator' },
+        //Item
         { 
             label: 'Banco de Dados',
             click: async () => { await linky(shurp('rod-icuv-cxi')) },
@@ -33,6 +49,7 @@ const createTray = () => {
                 }
             ]
         },
+        //Item
         {
             label: 'TCC',
             click: async () => { await linky(shurp('pzz-zdpr-qpt')) },
@@ -41,12 +58,21 @@ const createTray = () => {
                     label: 'Abrir Meet',
                     click: async () => { await linky(shurp('pzz-zdpr-qpt')) }
                 },
+                { 
+                    label: 'Copiar Link',
+                    click() { copy('pzz-zdpr-qpt') }
+                },
             ]
-        }
+        },
+        { type: 'separator' },
+        isMac ? { label: 'Sair', role: 'close' } : { label: 'Sair', role: 'quit' },
     ])
 
     tray.setToolTip('Meet Notifier')
     tray.setContextMenu(contextMenu)
+
+  
+    tray.on('double-click', () => notify('Banco de Dados', 'Próxima reunião em 20 minutos'))
 }
 
 function handleSquirrelEvent(application) {

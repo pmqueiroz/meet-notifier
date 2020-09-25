@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
-    "electron": "^10.1.2",
     "electron-squirrel-startup": "^1.0.0",
     "install": "^0.13.0"
+  },
+  "devDependencies": {
+    "electron": "^10.1.2"
   }
 }
