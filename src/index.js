@@ -6,6 +6,7 @@ const { shurp, linky, imge } = require('./utils/functions')
 const isMac = process.platform === 'darwin'
 const meetIcon = resolve(__dirname, 'assets', 'tray-icon.png')
 let tray = null
+let hidden = true;
 
 isMac ? app.dock.hide() : null
 
@@ -26,6 +27,25 @@ const notify = (title, body) => {
         body,
         icon
     }).show();
+}
+
+const onClose = (exitCode = 1) => {
+    console.log('switch')
+    switch (exitCode) {
+        case 0:
+            win.hide()
+            hidden = true
+            console.log('hide')
+            break;
+        case 1:
+            app.quit()
+            console.log('quit')
+            break;
+        default:
+            console.log('default')
+            app.quit()
+            break;
+    }
 }
 
 const createTray = () => {
@@ -73,7 +93,7 @@ const createTray = () => {
             ]
         },
         { type: 'separator' },
-        isMac ? { label: 'Sair', role: 'close' } : { label: 'Sair', role: 'quit' },
+        { label: 'Sair', click: () => {app.quit()} },
     ])
 
     tray.setToolTip('Meet Notifier')
@@ -81,6 +101,8 @@ const createTray = () => {
 
   
     tray.on('double-click', () => notify('Banco de Dados', 'Próxima reunião em 20 minutos'))
+
+    tray.on('click' , () => tray.popUpContextMenu())
 }
 
 const openMeet = (code) => {
@@ -90,13 +112,20 @@ const openMeet = (code) => {
 		height:  height * .7,
         icon: imge('tray-icon', 4),
     })
+
+    hidden = false
+
+    win.on('close', function (event) {
+        !hidden ? event.preventDefault() : null
+        onClose(0)
+    });
     
+    win.loadURL('https://meet.google.com/'+code)
 
-	win.loadURL('https://meet.google.com/'+code)
-
-	win.on('closed', () => {
+	win.on('closed', (e) => {
 		win = null
     })
+
     
     Menu.setApplicationMenu(null)
 }
