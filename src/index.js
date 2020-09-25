@@ -11,16 +11,11 @@ let isHidden = false
 
 isMac ? app.dock.hide() : null
 
-if (handleSquirrelEvent(app)) {
-    return;
-}
-
 app.setAppUserModelId(process.execPath)
 
 app.on('ready', () => {
     createTray()
 })
-
 
 const notify = (title, body) => {
     let icon = imge('tray-icon', 4)
@@ -121,7 +116,6 @@ const openMeet = (code) => {
     });
 
     win.on('hide', () => {
-        console.log('app is now hidden')
         isHidden = true
     })
     
