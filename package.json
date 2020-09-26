@@ -6,6 +6,17 @@
   "repository": "https://github.com/pmqueiroz/meet-notifier.git",
   "author": "pmqueiroz <pedroqueiroz593@gmail.com>",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged":{
+    "*.js": [
+       "eslint --fix",
+       "git add"
+    ]
+  },
   "scripts": {
     "dev": "electron ."
   },
@@ -15,6 +26,9 @@
   },
   "devDependencies": {
     "electron": "^10.1.2",
-    "electron-wix-msi": "^3.0.3"
+    "electron-wix-msi": "^3.0.3",
+    "eslint": "6.8.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0"
   }
 }

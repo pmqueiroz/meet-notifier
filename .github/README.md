@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Thank you for reading this
     If you´re having any problem with this project please contact in the issues session
 -->
@@ -78,8 +78,11 @@ $ yarn add electron -D
 $ yarn add clipboardy
 $ yarn add install
 
-# Optionally dependencies (used just on built-in)
-$ yarn add electron-wix-msi
+# Optionally dependencies (used just on built-in or dev)
+$ yarn add electron-wix-msi -D
+$ yarn add eslint -D
+$ yarn add husky -D
+$ yarn add lint-staged -D
 ```
 
 #### Running
@@ -95,7 +98,7 @@ $ yarn dev
 
 In case you are having any problem do not be shy to report to us in [Issues][issues-url] session.
 
-### Contributing 🤝 
+### Contributing 🤝
 
 There are many forms to contribute with the project, first of all you can give this github repo a Star.
 
