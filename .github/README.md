@@ -7,7 +7,7 @@
 [meet-notifier-logo]: https://user-images.githubusercontent.com/54639269/94340524-ec422c80-ffd8-11ea-82ee-edeedda808ee.png
 [license-badge]: https://img.shields.io/github/license/pmqueiroz/meet-notifier?color=%2300897B
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/36d9e0a5dfa2434daaadfe2d1edbb3e0
-[msi]: https://img.shields.io/badge/Apk-download-important?logo=windows&color=%2300897B
+[msi]: https://img.shields.io/badge/msi-download-important?logo=windows&color=%2300897B
 [license-url]: https://github.com/pmqueiroz/meet-notifier/blob/master/LICENSE
 [msi-url]: https://github.com/pmqueiroz/meet-notifier/releases/download/v0.0.1-alpha/Meet_Notifier_x64.msi
 [issues-url]: https://github.com/pmqueiroz/meet-notifier/issues/
