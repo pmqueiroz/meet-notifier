@@ -3,9 +3,9 @@
     If you´re having any problem with this project please contact in the issues session
 -->
 
-<div align="center">
+<div align="center" width="500px">
 
-![meet-notifier][meet-notifier-logo]
+<img width="700px" align="center" src="https://user-images.githubusercontent.com/54639269/94340524-ec422c80-ffd8-11ea-82ee-edeedda808ee.png"></img>
 
 </div>
 
@@ -114,7 +114,6 @@ Then send a Pull Request that will be analyzed and approved if it helps with the
 This project is under the MIT license. See the [LICENSE][license-url] for more information.
 
 <!-- VARS -->
-[meet-notifier-logo]: https://user-images.githubusercontent.com/54639269/94340524-ec422c80-ffd8-11ea-82ee-edeedda808ee.png
 [license-badge]: https://img.shields.io/github/license/pmqueiroz/meet-notifier?color=%2300897B
 [download-badge]: https://img.shields.io/github/downloads/pmqueiroz/meet-notifier/total?color=00897B
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/36d9e0a5dfa2434daaadfe2d1edbb3e0

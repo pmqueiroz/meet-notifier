@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
-    "googleapis": "^60.0.1",
+    "dotenv": "^8.2.0",
+    "googleapis": "59.0.0",
     "install": "^0.13.0"
   },
   "devDependencies": {
