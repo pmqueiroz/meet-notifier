@@ -17,6 +17,7 @@
 
 [![License][license-badge]][license-url]
 [![Msi Download][msi]][msi-url]
+![download-badge]
 [![Codacy Badge][codacy-badge]][codacy-url]
 
 </div>
@@ -115,6 +116,7 @@ This project is under the MIT license. See the [LICENSE][license-url] for more i
 <!-- VARS -->
 [meet-notifier-logo]: https://user-images.githubusercontent.com/54639269/94340524-ec422c80-ffd8-11ea-82ee-edeedda808ee.png
 [license-badge]: https://img.shields.io/github/license/pmqueiroz/meet-notifier?color=%2300897B
+[download-badge]: https://img.shields.io/github/downloads/pmqueiroz/meet-notifier/total?color=00897B
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/36d9e0a5dfa2434daaadfe2d1edbb3e0
 [msi]: https://img.shields.io/badge/msi-download-important?logo=windows&color=%2300897B
 [license-url]: https://github.com/pmqueiroz/meet-notifier/blob/master/LICENSE
