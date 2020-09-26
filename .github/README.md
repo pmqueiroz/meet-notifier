@@ -62,12 +62,17 @@ $ yarn install
 
 ```ps
 $ yarn add electron -D
+$ yarn add googleapis
 $ yarn add clipboardy
 $ yarn add install
 
 # Optionally dependencies (used just on built-in or dev)
 $ yarn add electron-wix-msi -D
 $ yarn add eslint -D
+$ yarn add @commitlint/cli
+$ yarn add @commitlint/config-conventional
+$ yarn add commitizen
+$ yarn add cz-conventional-changelog
 $ yarn add husky -D
 $ yarn add lint-staged -D
 ```
