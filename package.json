@@ -20,11 +20,13 @@
   },
   "scripts": {
     "dev": "electron .",
+    "test": "node src/utils/test.sync.js",
     "pub": "git add . && git-cz",
     "commit": "git-cz"
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
+    "googleapis": "^60.0.1",
     "install": "^0.13.0"
   },
   "devDependencies": {
