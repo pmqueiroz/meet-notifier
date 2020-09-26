@@ -20,7 +20,8 @@
   },
   "scripts": {
     "dev": "electron .",
-    "pub": "git add . && git-cz"
+    "pub": "git add . && git-cz",
+    "commit": "git-cz"
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
