@@ -14,10 +14,6 @@ isMac ? app.dock.hide() : null
 
 app.setAppUserModelId(process.execPath)
 
-app.on('ready', () => {
-   createTray()
-})
-
 const notify = (title, body) => {
    let icon = imge('tray-icon', 4)
    new Notification({
@@ -25,6 +21,36 @@ const notify = (title, body) => {
       body,
       icon
    }).show()
+}
+
+const openMeet = (code) => {
+   isHidden = false
+   const { width, height } = screen.getPrimaryDisplay().workAreaSize
+   win = new BrowserWindow({
+      width: width * Math.SQRT1_2.toPrecision(1),
+      height:  height * Math.SQRT1_2.toPrecision(1),
+      icon: imge('tray-icon', 4),
+   })
+
+   win.on('close', function (event) {
+      if (!isHidden) {
+         event.preventDefault()
+      }
+      win.hide()
+   })
+
+   win.on('hide', () => {
+      isHidden = true
+   })
+
+   win.loadURL('https://meet.google.com/'+code)
+
+   win.on('closed', () => {
+      win = null
+   })
+
+
+   Menu.setApplicationMenu(null)
 }
 
 const createTray = () => {
@@ -84,32 +110,6 @@ const createTray = () => {
    tray.on('click' , () => tray.popUpContextMenu())
 }
 
-const openMeet = (code) => {
-   isHidden = false
-   const { width, height } = screen.getPrimaryDisplay().workAreaSize
-   win = new BrowserWindow({
-      width: width * .7,
-      height:  height * .7,
-      icon: imge('tray-icon', 4),
-   })
-
-   win.on('close', function (event) {
-      if (!isHidden) {
-         event.preventDefault()
-      }
-      win.hide()
-   })
-
-   win.on('hide', () => {
-      isHidden = true
-   })
-
-   win.loadURL('https://meet.google.com/'+code)
-
-   win.on('closed', () => {
-      win = null
-   })
-
-
-   Menu.setApplicationMenu(null)
-}
+app.on('ready', () => {
+   createTray()
+})
