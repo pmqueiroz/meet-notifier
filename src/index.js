@@ -26,21 +26,6 @@ const notify = (title, body) => {
     }).show();
 }
 
-const onClose = (exitCode = 1) => {
-    console.log('switch')
-    switch (exitCode) {
-        case 0:
-            win.hide()
-            break;
-        case 1:
-            app.quit()
-            break;
-        default:
-            app.quit()
-            break;
-    }
-}
-
 const createTray = () => {
     tray = new Tray(meetIcon)
 
