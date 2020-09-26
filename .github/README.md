@@ -22,15 +22,18 @@
 </div>
 
 ### Content
-  * [Getting Started](#Getting-Started-)
-    * [Cloning](#Cloning)
-    * [Requirements](#Requirements)
-    * [Running](#Running)
-  * [Issues](#Issues-)
-    * [Report](#Report)
-    * ~~Trouble Shooting~~
-  * [Contributing](#Contributing-)
-  * [License](#License-)
+* [Getting Started](#Getting-Started-)
+   * [Cloning](#Cloning)
+   * [Requirements](#Requirements)
+   * [Running](#Running)
+
+* [Issues](#Issues-)
+   * [Report](#Report)
+   * ~~Trouble Shooting~~
+
+* [Contributing](#Contributing-)
+
+* [License](#License-)
 
 ### Getting Started 🚀
 
