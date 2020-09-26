@@ -27,7 +27,7 @@
 </div>
 
 <p align="center">
-    Desktop tray and meet browser to notify scheduled meetings on <a href="https://calendar.google.com" >Google Calendar</a>
+    Desktop tray app and meet browser to notify scheduled meetings on <a href="https://calendar.google.com" >Google Calendar</a>
 </p>
 
 <div align="center">
