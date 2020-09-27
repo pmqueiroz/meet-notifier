@@ -25,6 +25,7 @@
     "commit": "git-cz"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "clipboardy": "^2.3.0",
     "dotenv": "^8.2.0",
     "googleapis": "59.0.0",

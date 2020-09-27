@@ -30,3 +30,17 @@ imge('tray-icon', 4)
 ```
 */
 export function imge(fileName: string, density: number, dirPath?: string): string
+
+/**
+Open a external link on deafault browser
+
+@param url - external link
+
+@example
+```
+import { linky } from 'functions'
+
+linky('github.com/pmqueiroz/meet-notifier')
+```
+*/
+export function linky(url: string): void

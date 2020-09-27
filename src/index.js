@@ -1,13 +1,11 @@
 require('events').EventEmitter.defaultMaxListeners = 15
 const { app, screen, Menu, Tray, Notification, BrowserWindow } = require('electron')
 const { writeSync: copy } = require('clipboardy')
-const { resolve } = require('path')
 const { shurp, linky, imge } = require('./utils/functions')
 
 const isMac = process.platform === 'darwin'
-const meetIcon = resolve(__dirname, 'assets', 'tray-icon.png')
-let tray = null
 let isHidden = false
+let tray = null
 let win = null
 
 isMac ? app.dock.hide() : null
@@ -54,7 +52,8 @@ const openMeet = (code) => {
 }
 
 const createTray = () => {
-   tray = new Tray(meetIcon)
+   let icon = imge('tray-icon', 1)
+   tray = new Tray(icon)
 
    const contextMenu = Menu.buildFromTemplate([
       { label: 'Meet Notifier' },
@@ -65,15 +64,15 @@ const createTray = () => {
          click: async () => { await linky(shurp('rod-icuv-cxi')) },
          submenu: [
             {
-               label: 'Abrir Meet',
+               label: 'Open Meet',
                click () { openMeet('rod-icuv-cxi') }
             },
             {
-               label: 'Abrir no Navegador',
+               label: 'Open on Browser',
                click () { linky(shurp('rod-icuv-cxi')) }
             },
             {
-               label: 'Copiar Link',
+               label: 'Copy Link',
                click() { copy(shurp('rod-icuv-cxi')) }
             },
          ]
@@ -98,7 +97,14 @@ const createTray = () => {
          ]
       },
       { type: 'separator' },
-      { label: 'Sair', click: () => {app.quit()} },
+      {
+         label:'Help',
+         submenu: [
+            { label: 'Learn more', click () { linky('github.com/pmqueiroz/meet-notifier') }},
+            { label: 'Report Issue', click () { linky('github.com/pmqueiroz/meet-notifier/issues') }}
+         ]
+      },
+      isMac ? { role: 'close' } : { role: 'quit' },
    ])
 
    tray.setToolTip('Meet Notifier')
