@@ -7,3 +7,5 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 end_of_line = lf
+
+# https://gist.github.com/pmqueiroz/32a4f211f253b1afe7160d05086b4f79
