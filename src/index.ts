@@ -1,20 +1,35 @@
-require('events').EventEmitter.defaultMaxListeners = 15
-const {
+import {
    app,
    screen,
+   shell,
    Menu,
    Tray,
    Notification,
    BrowserWindow,
    nativeImage,
-} = require('electron')
-const { writeSync: copy } = require('clipboardy')
-const { shurp, linky } = require('./utils/functions')
+} from 'electron'
+import { EventEmitter } from 'events'
+import { writeSync as copy } from 'clipboardy'
+
+EventEmitter.defaultMaxListeners = 15
+
+const linky = (url: string) => {
+   if (url.includes('https://')) {
+      shell.openExternal(url)
+   } else {
+      shell.openExternal(`https://${url}`)
+   }
+}
+
+const shurp = (shortUrl: string, domain = 'meet.google.com') => {
+   const url = 'https://' + domain + '/' + shortUrl
+   return url
+}
 
 const isMac = process.platform === 'darwin'
 let isHidden = false
-let tray = null
-let win = null
+let tray: Tray | null
+let win: BrowserWindow | null
 
 isMac ? app.dock.hide() : null
 
@@ -24,7 +39,7 @@ const icon = nativeImage.createFromPath(
    `${app.getAppPath()}/src/assets/logo.ico`,
 )
 
-const notify = (title, body) => {
+const notify = (title: string, body: string) => {
    new Notification({
       title,
       body,
@@ -32,12 +47,12 @@ const notify = (title, body) => {
    }).show()
 }
 
-const openMeet = code => {
+const openMeet = (code: string) => {
    isHidden = false
    const { width, height } = screen.getPrimaryDisplay().workAreaSize
    win = new BrowserWindow({
-      width: width * Math.SQRT1_2.toPrecision(1),
-      height: height * Math.SQRT1_2.toPrecision(1),
+      width: width * 0.7,
+      height: height * 0.7,
       icon,
    })
 
@@ -45,7 +60,7 @@ const openMeet = code => {
       if (!isHidden) {
          event.preventDefault()
       }
-      win.hide()
+      win?.hide()
    })
 
    win.on('hide', () => {
@@ -149,7 +164,7 @@ const createTray = () => {
       notify('Banco de Dados', 'Próxima reunião em 20 minutos'),
    )
 
-   tray.on('click', () => tray.popUpContextMenu())
+   tray.on('click', () => tray?.popUpContextMenu())
 }
 
 app.on('ready', () => {
