@@ -39,7 +39,7 @@
       "installerIcon": "src/assets/logo.ico",
       "uninstallerIcon": "src/assets/logo.ico",
       "uninstallDisplayName": "Meet Notifier",
-      "license": "LICENSE",
+      "license": "eula.txt",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
