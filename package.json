@@ -1,5 +1,6 @@
 {
   "name": "meet-notifier",
+  "productName": "Meet Notifier",
   "description": "A Google Meet notifier for meets schedules in calendar.google",
   "version": "0.0.2",
   "main": "src/index.js",
@@ -22,7 +23,26 @@
     "dev": "electron .",
     "test": "node src/utils/test.sync.js",
     "pub": "git add . && git-cz",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "build-win": "electron-builder"
+  },
+  "build": {
+    "appId": "meet-notifier",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "src/assets/logo.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "installerIcon": "src/assets/logo.ico",
+      "uninstallerIcon": "src/assets/logo.ico",
+      "uninstallDisplayName": "Meet Notifier",
+      "license": "LICENSE",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -37,7 +57,7 @@
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "3.3.0",
     "electron": "^10.1.2",
-    "electron-wix-msi": "^3.0.3",
+    "electron-builder": "^22.8.1",
     "eslint": "6.8.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",

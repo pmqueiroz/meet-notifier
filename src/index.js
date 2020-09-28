@@ -1,7 +1,15 @@
 require('events').EventEmitter.defaultMaxListeners = 15
-const { app, screen, Menu, Tray, Notification, BrowserWindow } = require('electron')
+const {
+   app,
+   screen,
+   Menu,
+   Tray,
+   Notification,
+   BrowserWindow,
+   nativeImage,
+} = require('electron')
 const { writeSync: copy } = require('clipboardy')
-const { shurp, linky, imge } = require('./utils/functions')
+const { shurp, linky } = require('./utils/functions')
 
 const isMac = process.platform === 'darwin'
 let isHidden = false
@@ -12,22 +20,25 @@ isMac ? app.dock.hide() : null
 
 app.setAppUserModelId(process.execPath)
 
+const icon = nativeImage.createFromPath(
+   `${app.getAppPath()}/src/assets/logo.ico`,
+)
+
 const notify = (title, body) => {
-   let icon = imge('tray-icon', 4)
    new Notification({
       title,
       body,
-      icon
+      icon,
    }).show()
 }
 
-const openMeet = (code) => {
+const openMeet = code => {
    isHidden = false
    const { width, height } = screen.getPrimaryDisplay().workAreaSize
    win = new BrowserWindow({
       width: width * Math.SQRT1_2.toPrecision(1),
-      height:  height * Math.SQRT1_2.toPrecision(1),
-      icon: imge('tray-icon', 4),
+      height: height * Math.SQRT1_2.toPrecision(1),
+      icon,
    })
 
    win.on('close', function (event) {
@@ -41,18 +52,16 @@ const openMeet = (code) => {
       isHidden = true
    })
 
-   win.loadURL('https://meet.google.com/'+code)
+   win.loadURL('https://meet.google.com/' + code)
 
    win.on('closed', () => {
       win = null
    })
 
-
    Menu.setApplicationMenu(null)
 }
 
 const createTray = () => {
-   let icon = imge('tray-icon', 1)
    tray = new Tray(icon)
 
    const contextMenu = Menu.buildFromTemplate([
@@ -61,48 +70,74 @@ const createTray = () => {
       //Item
       {
          label: 'Banco de Dados',
-         click: async () => { await linky(shurp('rod-icuv-cxi')) },
+         click: async () => {
+            await linky(shurp('rod-icuv-cxi'))
+         },
          submenu: [
             {
                label: 'Open Meet',
-               click () { openMeet('rod-icuv-cxi') }
+               click() {
+                  openMeet('rod-icuv-cxi')
+               },
             },
             {
                label: 'Open on Browser',
-               click () { linky(shurp('rod-icuv-cxi')) }
+               click() {
+                  linky(shurp('rod-icuv-cxi'))
+               },
             },
             {
                label: 'Copy Link',
-               click() { copy(shurp('rod-icuv-cxi')) }
+               click() {
+                  copy(shurp('rod-icuv-cxi'))
+               },
             },
-         ]
+         ],
       },
       //Item
       {
          label: 'TCC',
-         click: async () => { await linky(shurp('pzz-zdpr-qpt')) },
+         click: async () => {
+            await linky(shurp('pzz-zdpr-qpt'))
+         },
          submenu: [
             {
                label: 'Abrir Meet',
-               click () { openMeet('pzz-zdpr-qpt') }
+               click() {
+                  openMeet('pzz-zdpr-qpt')
+               },
             },
             {
                label: 'Abrir no Navegador',
-               click () { linky(shurp('pzz-zdpr-qpt')) }
+               click() {
+                  linky(shurp('pzz-zdpr-qpt'))
+               },
             },
             {
                label: 'Copiar Link',
-               click() { copy(shurp('pzz-zdpr-qpt')) }
+               click() {
+                  copy(shurp('pzz-zdpr-qpt'))
+               },
             },
-         ]
+         ],
       },
       { type: 'separator' },
       {
-         label:'Help',
+         label: 'Help',
          submenu: [
-            { label: 'Learn more', click () { linky('github.com/pmqueiroz/meet-notifier') }},
-            { label: 'Report Issue', click () { linky('github.com/pmqueiroz/meet-notifier/issues') }}
-         ]
+            {
+               label: 'Learn more',
+               click() {
+                  linky('github.com/pmqueiroz/meet-notifier')
+               },
+            },
+            {
+               label: 'Report Issue',
+               click() {
+                  linky('github.com/pmqueiroz/meet-notifier/issues')
+               },
+            },
+         ],
       },
       isMac ? { role: 'close' } : { role: 'quit' },
    ])
@@ -110,10 +145,11 @@ const createTray = () => {
    tray.setToolTip('Meet Notifier')
    tray.setContextMenu(contextMenu)
 
+   tray.on('double-click', () =>
+      notify('Banco de Dados', 'Próxima reunião em 20 minutos'),
+   )
 
-   tray.on('double-click', () => notify('Banco de Dados', 'Próxima reunião em 20 minutos'))
-
-   tray.on('click' , () => tray.popUpContextMenu())
+   tray.on('click', () => tray.popUpContextMenu())
 }
 
 app.on('ready', () => {
