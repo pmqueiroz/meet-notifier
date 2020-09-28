@@ -16,8 +16,8 @@
 <div align="center">
 
 [![License][license-badge]][license-url]
-[![Msi Download][msi]][msi-url]
-![download-badge]
+[![exe Download][exe]][exe-url]
+[![Realeases][download-badge]][releases-url]
 [![Codacy Badge][codacy-badge]][codacy-url]
 
 </div>
@@ -125,9 +125,10 @@ This project is under the MIT license. See the [LICENSE][license-url] for more i
 [license-badge]: https://img.shields.io/github/license/pmqueiroz/meet-notifier?color=%2300897B
 [download-badge]: https://img.shields.io/github/downloads/pmqueiroz/meet-notifier/total?color=00897B
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/36d9e0a5dfa2434daaadfe2d1edbb3e0
-[msi]: https://img.shields.io/badge/msi-download-important?logo=windows&color=%2300897B
+[exe]: https://img.shields.io/badge/exe-download-important?logo=windows&color=%2300897B
 [license-url]: https://github.com/pmqueiroz/meet-notifier/blob/master/LICENSE
-[msi-url]: https://github.com/pmqueiroz/meet-notifier/releases/download/v0.0.1-alpha/Meet_Notifier_x64.msi
+[exe-url]: https://github.com/pmqueiroz/meet-notifier/releases/download/v0.0.2-alpha/Meet.Notifier.Setup.0.0.2.exe
+[releases-url]: https://github.com/pmqueiroz/meet-notifier/releases
 [issues-url]: https://github.com/pmqueiroz/meet-notifier/issues/
 [codacy-url]: https://www.codacy.com/manual/pmqueiroz/meet-notifier/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pmqueiroz/meet-notifier&amp;utm_campaign=Badge_Grade
 [node-url]: https://nodejs.org/en
