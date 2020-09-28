@@ -67,18 +67,21 @@ $ yarn add clipboardy
 $ yarn add install
 
 # Optionally dependencies (used just on built-in or dev)
-$ yarn add electron-wix-msi -D
+$ yarn add electron-builder -D
 $ yarn add eslint -D
-$ yarn add @commitlint/cli
-$ yarn add @commitlint/config-conventional
-$ yarn add commitizen
-$ yarn add cz-conventional-changelog
+$ yarn add prettier -D
+$ yarn add @commitlint/cli -D
+$ yarn add @commitlint/config-conventional -D
+$ yarn add eslint-config-prettier -D
+$ yarn add eslint-plugin-prettier -D
+$ yarn add commitizen -D
+$ yarn add cz-conventional-changelog -D
 $ yarn add husky -D
 $ yarn add lint-staged -D
 ```
 #### Running
 
-To start the program run
+To start the program run:
 
 ```ps
 $ yarn dev
