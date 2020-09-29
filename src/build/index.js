@@ -60,6 +60,7 @@ var win;
 isMac ? electron_1.app.dock.hide() : null;
 electron_1.app.setAppUserModelId(process.execPath);
 var icon = electron_1.nativeImage.createFromPath(electron_1.app.getAppPath() + "/src/assets/logo.ico");
+var icon_alpha = electron_1.nativeImage.createFromPath(electron_1.app.getAppPath() + "/src/assets/tray-icon.png");
 var notify = function (title, body) {
     new electron_1.Notification({
         title: title,
@@ -93,7 +94,11 @@ var openMeet = function (code) {
 var createTray = function () {
     tray = new electron_1.Tray(icon);
     var contextMenu = electron_1.Menu.buildFromTemplate([
-        { label: 'Meet Notifier' },
+        {
+            label: 'Meet Notifier',
+            icon: icon_alpha,
+            enabled: false,
+        },
         { type: 'separator' },
         //Item
         {

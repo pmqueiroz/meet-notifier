@@ -39,6 +39,10 @@ const icon = nativeImage.createFromPath(
    `${app.getAppPath()}/src/assets/logo.ico`,
 )
 
+const icon_alpha = nativeImage.createFromPath(
+   `${app.getAppPath()}/src/assets/tray-icon.png`,
+)
+
 const notify = (title: string, body: string) => {
    new Notification({
       title,
@@ -80,7 +84,11 @@ const createTray = () => {
    tray = new Tray(icon)
 
    const contextMenu = Menu.buildFromTemplate([
-      { label: 'Meet Notifier' },
+      {
+         label: 'Meet Notifier',
+         icon: icon_alpha,
+         enabled: false,
+      },
       { type: 'separator' },
       //Item
       {
